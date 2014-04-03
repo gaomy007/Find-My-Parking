@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +21,21 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="NewRecord">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_NEW" ></action>
+ 
+                <category android:name="android.intent.category.DEFAULT" ></category>
+            </intent-filter>       
+        </activity>
+        
+        <activity android:name="FindRecord">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_FIND" ></action>
+ 
+                <category android:name="android.intent.category.DEFAULT" ></category>
+            </intent-filter>            
         </activity>
     </application>
 
