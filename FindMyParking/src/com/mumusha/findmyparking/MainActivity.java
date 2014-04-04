@@ -28,16 +28,26 @@ public class MainActivity extends Activity {
      * This method will be invoked whenever the button is clicked in the
      * BlueActivity. This will trigger the invocation of YellowActivity.
      */
-    public void onClick(View v) {
+    public void onClickNew(View v) {
         //resultField.setText("");
         /**
          * Construct an Intent to launch NewRecord. Note that
          * NewRecord is referenced explicitly via its class object.
          */
-        Intent intent = new Intent(this, NewRecordActivity.class);
-        intent.setClass(MainActivity.this, NewRecordActivity.class);
+        Intent intent = new Intent(this, NewRecord.class);
+        intent.setClass(MainActivity.this, NewRecord.class);
         startActivity(intent);
         
     }
-
+    public void onClickFind(View v) {
+        //resultField.setText("");
+        /**
+         * Construct an Intent to launch NewRecord. Note that
+         * NewRecord is referenced explicitly via its class object.
+         */
+        Intent intent = new Intent(this, FindRecord.class);
+        intent.setClass(MainActivity.this, FindRecord.class);
+        startActivity(intent);
+        
+    }
 }

@@ -14,9 +14,9 @@
         android:id="@+id/button1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_alignLeft="@+id/button2"
         android:layout_alignParentTop="true"
         android:layout_marginTop="54dp"
+        android:onClick="onClickNew"
         android:text="New+" />
 
     <Button
@@ -26,6 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/button1"
         android:layout_marginTop="56dp"
+        android:onClick="onClickFind"
         android:text="Find(+)" />
     
 </RelativeLayout>

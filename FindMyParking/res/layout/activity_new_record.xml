@@ -1,8 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:text="Location:"
+            android:textSize="25sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1" >
+
+            <Button
+                android:id="@+id/button1"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="right|top"
+                android:layout_row="0"
+                android:text="Google map view" />
+
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="left|center_vertical"
+                android:layout_row="0"
+                android:text="GPS:"
+                android:textSize="20sp" />
+
+            <TextureView
+                android:id="@+id/textureView1"
+                android:layout_width="65dp"
+                android:layout_height="32dp"
+                android:layout_column="0"
+                android:layout_gravity="center"
+                android:layout_row="0" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:orientation="vertical" >
+
+		<TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="94dp"
+		    android:layout_height="wrap_content"
+		    android:text="Timer:"
+		    />
+
+		<GridLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:columnCount="1" >
+
+		    <TimePicker
+		        android:id="@+id/timePicker1"
+		        android:layout_width="186dp"
+		        android:layout_height="wrap_content"
+		        android:layout_column="0"
+		        android:layout_gravity="right|top"
+		        android:layout_row="0" />
+
+		    <TextView
+		        android:id="@+id/textView1"
+		        android:layout_width="134dp"
+		        android:layout_height="wrap_content"
+		        android:layout_column="0"
+		        android:layout_gravity="left|center_vertical"
+		        android:layout_row="0"
+		        android:text="Parking time:"
+		         />
+
+		</GridLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:orientation="vertical" >
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_row="0"
+                android:src="@drawable/ic_launcher" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_column="0"
+                android:layout_gravity="right|center_vertical"
+                android:layout_row="0"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="left|top"
+                android:layout_row="0"
+                android:text="Photo:" />
+
+        </GridLayout>
+
+    </LinearLayout>
+ 
+ 	<LinearLayout
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_weight="0.25"
+ 	    android:orientation="vertical" >
+
+ 		<TextView
+ 		    android:id="@+id/textView1"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="Note:" />
+
+ 		<EditText
+ 		    android:id="@+id/editText1"
+ 		    android:layout_width="match_parent"
+ 		    android:layout_height="wrap_content"
+ 		    android:ems="10"
+ 		    android:inputType="textPersonName" >
+
+ 		    <requestFocus />
+ 		</EditText>
+
+ 	</LinearLayout>
+    
+    </LinearLayout>
+
