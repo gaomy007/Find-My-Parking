@@ -16,14 +16,15 @@
          >
         <activity
             android:name="com.mumusha.findmyparking.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="NewRecord">
+        <activity android:name="NewRecord" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_NEW" ></action>
  
@@ -31,7 +32,7 @@
             </intent-filter>       
         </activity>
         
-        <activity android:name="FindRecord">
+        <activity android:name="FindRecord" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_FIND" ></action>
  
