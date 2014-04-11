@@ -1,8 +1,23 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:id="@+id/scroll"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:fillViewport="true"
+   android:stackFromBottom="true"
+   android:transcriptMode="alwaysScroll" 
+  >
+
+
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical"
+    android:padding="10dip"
+  
+	 >
+ 
+	
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,68 +29,43 @@
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:text="Location:"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="1" >
+        <RelativeLayout
+	     android:id="@+id/map_layout"
+         android:layout_width="match_parent"
+         android:layout_height="200dp">
 
-            <Button
-                android:id="@+id/button1"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_gravity="right|top"
-                android:layout_row="0"
-                android:text="Google map view" />
+            <fragment
+                
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+                    
+    		<ImageView
+		        android:id="@+id/transparent_image"
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:src="#00000000" />
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="0"
-                android:text="GPS:"
-                android:textSize="20sp" />
-
-            <TextureView
-                android:id="@+id/textureView1"
-                android:layout_width="65dp"
-                android:layout_height="32dp"
-                android:layout_column="0"
-                android:layout_gravity="center"
-                android:layout_row="0" />
-        </GridLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+          android:padding="10dip">
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="94dp"
-            android:layout_height="wrap_content"
-            android:text="Timer:" />
+        
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="1" >
-
-            <TimePicker
-                android:id="@+id/timePicker1"
-                android:layout_width="186dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_gravity="right|top"
-                android:layout_row="0" />
-
+            
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="134dp"
@@ -83,7 +73,34 @@
                 android:layout_column="0"
                 android:layout_gravity="left|center_vertical"
                 android:layout_row="0"
-                android:text="Parking time:" />
+                android:text="Parking time:"
+                android:textSize="20sp" />
+
+		<EditText
+		    android:id="@+id/edt_settime"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_column="0"
+		    android:layout_gravity="left|center_vertical"
+		    android:layout_margin="10dp"
+		    android:layout_row="2"
+		    android:layout_weight="1"
+		    android:ems="8"
+		    android:inputType="number" >
+
+		   
+		</EditText>
+
+		<TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="71dp"
+		    android:layout_height="wrap_content"
+		    android:layout_column="0"
+		    android:layout_gravity="right|center_vertical"
+		    android:layout_row="2"
+		    android:text="(min)        "
+		    android:textSize="20sp" />
+
         </GridLayout>
     </LinearLayout>
 
@@ -91,7 +108,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+          android:padding="10dip">
 
         <GridLayout
             android:layout_width="match_parent"
@@ -102,14 +120,7 @@
                 android:id="@+id/imageButton1"
                 android:layout_column="0"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_row="0"
-                android:src="@drawable/ic_launcher1" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_column="0"
-                android:layout_gravity="right|center_vertical"
-                android:layout_row="0"
+                android:layout_row="1"
                 android:src="@drawable/ic_launcher1" />
 
             <TextView
@@ -118,22 +129,26 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_gravity="left|top"
-                android:layout_row="0"
-                android:text="Photo:" />
+                android:layout_row="1"
+                android:text="Photo:"
+                android:textSize="20sp" />
         </GridLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+          android:padding="10dip">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Note:" />
+            android:text="Note:" 
+            android:textSize="20sp"/>
 
         <EditText
             android:id="@+id/editText1"
@@ -142,33 +157,55 @@
             android:ems="10"
             android:inputType="textPersonName" >
 
-            <requestFocus />
+            
         </EditText>
 
-        <LinearLayout
+        
+    </LinearLayout>
+    
+     
+<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/buttonReset"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|top"
-                android:onClick="onClickReset"
-                android:text="Reset" />
+            android:orientation="horizontal"
+              android:padding="10dip"
+             >
+<GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="1" 
+            android:layout_gravity="center">
 
             <Button
                 android:id="@+id/buttonOk"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|top"
+                android:layout_column="0"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_row="0"
                 android:onClick="onClickOk"
-                android:text="OK" />
-        </LinearLayout>
-    </LinearLayout>
+                android:padding="20dip"
+                android:text="OK"
+                android:textSize="20sp" />
 
+            <Button
+                android:id="@+id/buttonReset"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="left|top"
+                android:layout_row="0"
+                android:onClick="onClickReset"
+                android:padding="20dip"
+                android:text="Reset"
+                android:textSize="20sp" />
+            
+              </GridLayout>
+        </LinearLayout>
 </LinearLayout>
+
+
+</ScrollView>

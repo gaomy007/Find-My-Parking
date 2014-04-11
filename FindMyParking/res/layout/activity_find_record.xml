@@ -1,20 +1,24 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
-    <LinearLayout
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="10dip" >
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:text="Location:"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <GridLayout
             android:layout_width="match_parent"
@@ -27,63 +31,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_gravity="right|top"
+                android:layout_gravity="left|top"
                 android:layout_row="0"
-                android:text="find my car in google" />
+                android:text="find my car in google" 
+                android:textSize="15sp" />
 
-            <TextView
+        </GridLayout>
+    </TableRow>
+  
+
+
+
+    <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.25"
+      android:orientation="vertical"
+      android:padding="10dip" >
+        <TextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_gravity="left|center_vertical"
-                android:layout_row="0"
-                android:text="GPS:"
-                android:textSize="20sp" />
+                android:layout_gravity="left"
+                android:text="Chronometer:"
+                android:textSize="20sp"  />
 
-            <TextureView
-                android:id="@+id/textureView1"
-                android:layout_width="65dp"
-                android:layout_height="32dp"
-                android:layout_column="0"
-                android:layout_gravity="center"
-                android:layout_row="0" />
-        </GridLayout>
-    </LinearLayout>
+        <Chronometer
+            android:id="@+id/chronometer1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:text="Chronometer"
+            android:textSize="20sp"  />
 
-    <LinearLayout
+
+	</TableRow>
+
+    
+    
+    
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:orientation="vertical" >
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.25"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="10dip" >
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="1" >
-
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_column="0"
-                android:layout_gravity="center_horizontal|top"
-                android:layout_row="0"
-                android:src="@drawable/ic_launcher1" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_column="0"
-                android:layout_gravity="right|center_vertical"
-                android:layout_row="0"
-                android:src="@drawable/ic_launcher1" />
 
             <TextView
                 android:id="@+id/textView1"
@@ -92,46 +90,50 @@
                 android:layout_column="0"
                 android:layout_gravity="left|top"
                 android:layout_row="0"
-                android:text="Photo:" />
+                android:text="Photo:" 
+                android:textSize="20sp" />
         </GridLayout>
-    </LinearLayout>
 
-    <LinearLayout
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:src="@drawable/ic_launcher1" />
+
+    </TableRow>
+
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+        android:padding="10dip">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Note:" />
+            android:text="Note:" 
+            android:textSize="20sp" />
+
+        
 
         <TextView
             android:id="@+id/textViewUserInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="abc" />
+            android:text="ABCEDFG"
+             android:textSize="20sp" />
 
+  </TableRow>
+  
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:orientation="horizontal" >
-
-
-
-
-
-                    <Button
+  		 <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="50dp"
+                        
                         android:onClick="onClickFinish"
-                        android:text="finish" />
-        </LinearLayout>
-    </LinearLayout>
+                        android:text="finish and delete record" 
+                        android:textSize="20sp" />
+        
 
-</LinearLayout>
+ 
+</TableLayout>
