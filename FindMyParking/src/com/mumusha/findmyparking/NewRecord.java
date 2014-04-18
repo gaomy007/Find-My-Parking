@@ -1,35 +1,51 @@
 package com.mumusha.findmyparking;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.MapFragment;
+//import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
+//import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 import android.support.v4.app.FragmentActivity;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View.OnTouchListener;
+//import android.view.View.OnTouchListener;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+//import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+//import android.graphics.BitmapFactory;
 import android.location.Location;
-import android.location.LocationManager;
+//import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-import android.widget.TimePicker;
+//import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class NewRecord extends FragmentActivity implements
@@ -38,11 +54,13 @@ public class NewRecord extends FragmentActivity implements
 
 	private SupportMapFragment mapFragment;
 	private GoogleMap googleMap;
+	private ImageButton mImageButton;
 	private ScrollView mainScrollView;
 	private ImageView transparentImageView;
 	private LocationClient mLocationClient;
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-
+	private static Uri fileUri = null;
+	private int deletablePic = 0;
 	private EditText edtInput;
 
 	public static class ErrorDialogFragment extends DialogFragment {
@@ -84,6 +102,7 @@ public class NewRecord extends FragmentActivity implements
 		// add listener to handle the conflict between scroll and map
 		mainScrollView = (ScrollView) findViewById(R.id.scroll);
 		transparentImageView = (ImageView) findViewById(R.id.transparent_image);
+		mImageButton = (ImageButton) findViewById(R.id.imageButton1);
 		transparentImageView.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
@@ -152,6 +171,33 @@ public class NewRecord extends FragmentActivity implements
 				break;
 			}
 
+		case REQUEST_TAKE_PHOTO:
+			Bitmap bitmap = null;
+			deletablePic = 1;
+			try {
+				GetImageThumbnail getImageThumbnail = new GetImageThumbnail();
+				bitmap = getImageThumbnail.getThumbnail(fileUri, this);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			mImageButton.setImageBitmap(bitmap);
+			break;
+
+		}
+	}
+
+	private void deletePic() {
+
+		if (deletablePic == 1) {
+			new File(mCurrentPhotoPath).delete();
+
+			// getContentResolver().delete(Uri.fromFile(fileUri), null, null);
+			deletablePic = 0;
+			Log.i("pic deleted", "p");
 		}
 	}
 
@@ -186,6 +232,13 @@ public class NewRecord extends FragmentActivity implements
 		// Display the connection status
 		Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
 		Location location = mLocationClient.getLastLocation();
+		/*
+		while(location == null){
+			
+			 location = mLocationClient.getLastLocation();
+		}
+		*/
+		
 		LatLng latLng = new LatLng(location.getLatitude(),
 				location.getLongitude());
 		CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng,
@@ -227,40 +280,6 @@ public class NewRecord extends FragmentActivity implements
 		}
 	}
 
-	private void initilizeMap() {
-		if (googleMap == null) {
-			googleMap = ((MapFragment) getFragmentManager().findFragmentById(
-					R.id.map)).getMap();
-
-			// check if map is created successfully or not
-			if (googleMap == null) {
-				Toast.makeText(getApplicationContext(),
-						"Sorry! unable to create maps", Toast.LENGTH_SHORT)
-						.show();
-			}
-		}
-		googleMap.setMyLocationEnabled(true);
-		googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-		googleMap.getUiSettings().setRotateGesturesEnabled(false);
-		// Location currentLocation = googleMap.;
-
-		CameraPosition cameraPosition = new CameraPosition.Builder()
-				.target(new LatLng(17.385044, 78.486671)).zoom(12).build();
-
-		googleMap.animateCamera(CameraUpdateFactory
-				.newCameraPosition(cameraPosition));
-
-		// CameraUpdate center=
-		// CameraUpdateFactory.newLatLng(new
-		// LatLng(currentLocation.getLatitude(),
-		// currentLocation.getLongitude()));
-		// CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
-
-		// googleMap.moveCamera(center);
-		// googleMap.animateCamera(zoom);
-
-	}
-
 	public void onClickReset(View v) {
 		// resultField.setText("");
 		/**
@@ -271,7 +290,44 @@ public class NewRecord extends FragmentActivity implements
 		NoteText1.setText(null);
 		EditText NoteText2 = (EditText) findViewById(R.id.edt_settime);
 		NoteText2.setText(null);
+		mImageButton.setImageResource(R.drawable.ic_launcher1);
 
+		deletePic();
+
+	}
+	
+	
+	
+	private void saveRecord(){
+		Location location = mLocationClient.getLastLocation();
+		SharedPreferences sharedPref = getSharedPreferences("userRecord",MODE_PRIVATE);
+		
+		SharedPreferences.Editor editor = sharedPref.edit();
+		Time now = new Time();
+		now.setToNow();
+		
+		int hour=now.hour;
+		int mintue=now.minute;
+		Log.i("currenth1", Integer.toString(hour));
+		Log.i("currentm1", Integer.toString(mintue));
+		int wantMin=Integer.parseInt(edtInput.getText().toString());
+		hour=(hour+wantMin/60)%23;
+		mintue=(mintue+wantMin%60)%59;
+		editor.putBoolean("hasRecord", true);
+		editor.putInt("parkingHour", hour);
+		editor.putInt("parkingMin", mintue);
+		Log.i("currenth", Integer.toString(hour));
+		Log.i("currentm", Integer.toString(mintue));
+		
+		editor.putString("note", ((EditText)findViewById(R.id.editText1)).getText().toString());
+		editor.putString("picPath", mCurrentPhotoPath);
+		editor.putLong("latitude", (long)location.getLatitude());
+		editor.putLong("longitude", (long)location.getLongitude());
+		
+		editor.commit();	
+		Log.i("savedLa",Double.toString(location.getLatitude()) );
+		Log.i("savedLo",Double.toString(location.getLongitude()) );
+		Log.i("notevalue",((EditText)findViewById(R.id.editText1)).getText().toString() );
 	}
 
 	public void onClickOk(View v) {
@@ -284,15 +340,21 @@ public class NewRecord extends FragmentActivity implements
 		// intent.setClass(NewRecord.this, MainActivity.class);
 		// startActivity(intent);
 
+		
+		
+		
 		if (edtInput.getText().toString().isEmpty()) {
-			Toast.makeText(this, "empty parking time!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "empty parking time!", Toast.LENGTH_SHORT)
+					.show();
 			return;
 		}
 		int n = Integer.parseInt(edtInput.getText().toString());
-		if (n > 600 || n < 1){
-			Toast.makeText(this, "invaild parking time!", Toast.LENGTH_SHORT).show();
+		if (n > 600 || n < 1) {
+			Toast.makeText(this, "invaild parking time!", Toast.LENGTH_SHORT)
+					.show();
 			return;
 		}
+		saveRecord();
 		Intent intent = new Intent(this, timerService.class);
 		intent.putExtra("n", n);
 		startService(intent);
@@ -303,6 +365,50 @@ public class NewRecord extends FragmentActivity implements
 	public void onBackPressed() {
 
 		super.onBackPressed();
+	}
+
+	String mCurrentPhotoPath;
+
+	private File createImageFile() throws IOException {
+		// Create an image file name
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+				.format(new Date());
+		String imageFileName = "JPEG_" + timeStamp + "_";
+		File storageDir = Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		File image = File.createTempFile(imageFileName, /* prefix */
+				".jpg", /* suffix */
+				storageDir /* directory */
+		);
+
+		// Save a file: path for use with ACTION_VIEW intents
+		mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+		return image;
+	}
+
+	static final int REQUEST_TAKE_PHOTO = 1;
+
+	public void dispatchTakePictureIntent(View v) {
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		// Ensure that there's a camera activity to handle the intent
+		if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+			// Create the File where the photo should go
+			File photoFile = null;
+			try {
+				photoFile = createImageFile();
+			} catch (IOException ex) {
+				// Error occurred while creating the File
+
+			}
+			// Continue only if the File was successfully created
+			if (photoFile != null) {
+				deletePic();
+				fileUri = Uri.fromFile(photoFile);
+				takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+				startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+			}
+		}
+
 	}
 
 }

@@ -1,10 +1,12 @@
 package com.mumusha.findmyparking;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 //import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public static final String ACTION_NEW = "org.xmlvm.tutorial.intent.action.ACTION_NEW";
@@ -14,6 +16,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		SharedPreferences sharedPref = getSharedPreferences("userRecord",
+				MODE_PRIVATE);
+		Boolean hasRecord = sharedPref.getBoolean("hasRecord", false);
 	}
 	
 
@@ -45,6 +50,18 @@ public class MainActivity extends Activity {
          * Construct an Intent to launch NewRecord. Note that
          * NewRecord is referenced explicitly via its class object.
          */
+    	
+		SharedPreferences sharedPref = getSharedPreferences("userRecord",
+				MODE_PRIVATE);
+		Boolean hasRecord = sharedPref.getBoolean("hasRecord", false);
+		
+		
+    	if(!hasRecord){ 
+    		Toast.makeText(this, "Don't have record", Toast.LENGTH_SHORT).show();
+    		return;
+    		
+    	}
+    	
         Intent intent = new Intent(this, FindRecord.class);
         intent.setClass(MainActivity.this, FindRecord.class);
         startActivity(intent);

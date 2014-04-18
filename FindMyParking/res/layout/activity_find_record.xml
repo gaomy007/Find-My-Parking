@@ -1,6 +1,14 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gress"
+    android:fillViewport="true"
+    android:stackFromBottom="true"
+    android:transcriptMode="alwaysScroll" >
 
-
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+<TableLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -54,17 +62,24 @@
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_gravity="left"
-                android:text="Chronometer:"
+                android:text="Count Down Timer:"
                 android:textSize="20sp"  />
+	</TableRow>
+        
+ <TableRow
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.25"
+      android:orientation="vertical"
+      android:padding="10dip" >
 
-        <Chronometer
+        <TextView
             android:id="@+id/chronometer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            
-            android:text="Chronometer"
-            android:textSize="20sp"  />
-
+            android:layout_gravity="center"
+            android:text="0:0"
+            android:textSize="20sp" />
 
 	</TableRow>
 
@@ -93,9 +108,16 @@
                 android:text="Photo:" 
                 android:textSize="20sp" />
         </GridLayout>
-
-        <ImageButton
-            android:id="@+id/imageButton1"
+    </TableRow>
+ <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:orientation="vertical"
+        android:padding="10dip" >
+        
+        <ImageView
+            android:id="@+id/imageView1"
             android:src="@drawable/ic_launcher1" />
 
     </TableRow>
@@ -137,3 +159,5 @@
 
  
 </TableLayout>
+
+</ScrollView>
