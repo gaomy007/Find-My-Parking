@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -13,29 +13,24 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
-//import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-//import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-
 import android.support.v4.app.FragmentActivity;
-import android.text.format.Time;
 import android.util.Log;
 import android.view.MotionEvent;
-//import android.view.View.OnTouchListener;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
-//import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-//import android.graphics.BitmapFactory;
+import android.location.Criteria;
 import android.location.Location;
-//import android.location.LocationManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -45,7 +40,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-//import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class NewRecord extends FragmentActivity implements
@@ -62,6 +56,8 @@ public class NewRecord extends FragmentActivity implements
 	private static Uri fileUri = null;
 	private int deletablePic = 0;
 	private EditText edtInput;
+
+	
 
 	public static class ErrorDialogFragment extends DialogFragment {
 
@@ -89,8 +85,7 @@ public class NewRecord extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_new_record);
-		// R.id.
+		setContentView(R.layout.activity_new_record);	
 		mLocationClient = new LocationClient(this, this, this);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map));
@@ -158,7 +153,6 @@ public class NewRecord extends FragmentActivity implements
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// Decide what to do based on the original request code
 		switch (requestCode) {
 
 		case CONNECTION_FAILURE_RESOLUTION_REQUEST:
@@ -178,10 +172,8 @@ public class NewRecord extends FragmentActivity implements
 				GetImageThumbnail getImageThumbnail = new GetImageThumbnail();
 				bitmap = getImageThumbnail.getThumbnail(fileUri, this);
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			mImageButton.setImageBitmap(bitmap);
@@ -194,8 +186,6 @@ public class NewRecord extends FragmentActivity implements
 
 		if (deletablePic == 1) {
 			new File(mCurrentPhotoPath).delete();
-
-			// getContentResolver().delete(Uri.fromFile(fileUri), null, null);
 			deletablePic = 0;
 			Log.i("pic deleted", "p");
 		}
@@ -207,8 +197,6 @@ public class NewRecord extends FragmentActivity implements
 				.isGooglePlayServicesAvailable(this);
 		// If Google Play services is available
 		if (ConnectionResult.SUCCESS == resultCode) {
-			// In debug mode, log the status
-			Log.d("Location Updates", "Google Play services is available.");
 			return true;
 		} else {
 			// Get the error dialog from Google Play services
@@ -220,7 +208,6 @@ public class NewRecord extends FragmentActivity implements
 				// Create a new DialogFragment for the error dialog
 				ErrorDialogFragment errorFragment = new ErrorDialogFragment();
 				errorFragment.setDialog(errorDialog);
-				// errorFragment.show(getSupportFragmentManager(),"Location Updates");
 			}
 
 			return false;
@@ -232,12 +219,14 @@ public class NewRecord extends FragmentActivity implements
 		// Display the connection status
 		Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
 		Location location = mLocationClient.getLastLocation();
-		/*
-		while(location == null){
+		if(location==null)
+		{
 			
-			 location = mLocationClient.getLastLocation();
+			LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+			Criteria criteria = new Criteria();
+			String provider = service.getBestProvider(criteria, false);
+			 location = service.getLastKnownLocation(provider);
 		}
-		*/
 		
 		LatLng latLng = new LatLng(location.getLatitude(),
 				location.getLongitude());
@@ -290,8 +279,7 @@ public class NewRecord extends FragmentActivity implements
 		NoteText1.setText(null);
 		EditText NoteText2 = (EditText) findViewById(R.id.edt_settime);
 		NoteText2.setText(null);
-		mImageButton.setImageResource(R.drawable.ic_launcher1);
-
+		mImageButton.setImageResource(R.drawable.camera2);
 		deletePic();
 
 	}
@@ -301,48 +289,27 @@ public class NewRecord extends FragmentActivity implements
 	private void saveRecord(){
 		Location location = mLocationClient.getLastLocation();
 		SharedPreferences sharedPref = getSharedPreferences("userRecord",MODE_PRIVATE);
-		
-		SharedPreferences.Editor editor = sharedPref.edit();
-		Time now = new Time();
-		now.setToNow();
-		
-		int hour=now.hour;
-		int mintue=now.minute;
-		Log.i("currenth1", Integer.toString(hour));
-		Log.i("currentm1", Integer.toString(mintue));
-		int wantMin=Integer.parseInt(edtInput.getText().toString());
-		hour=(hour+wantMin/60)%23;
-		mintue=(mintue+wantMin%60)%59;
+		SharedPreferences.Editor editor = sharedPref.edit();		
+		Long wantMills=(long) (Integer.parseInt(edtInput.getText().toString())*60*1000);
+        Long targetTime=System.currentTimeMillis()+wantMills;
 		editor.putBoolean("hasRecord", true);
-		editor.putInt("parkingHour", hour);
-		editor.putInt("parkingMin", mintue);
-		Log.i("currenth", Integer.toString(hour));
-		Log.i("currentm", Integer.toString(mintue));
-		
+		editor.putLong("smstimestamp",targetTime);
 		editor.putString("note", ((EditText)findViewById(R.id.editText1)).getText().toString());
 		editor.putString("picPath", mCurrentPhotoPath);
-		editor.putLong("latitude", (long)location.getLatitude());
-		editor.putLong("longitude", (long)location.getLongitude());
-		
+		editor.putString("latitude", Double.toString(location.getLatitude()));
+		editor.putString("longitude", Double.toString(location.getLongitude()));
 		editor.commit();	
-		Log.i("savedLa",Double.toString(location.getLatitude()) );
-		Log.i("savedLo",Double.toString(location.getLongitude()) );
-		Log.i("notevalue",((EditText)findViewById(R.id.editText1)).getText().toString() );
+		
+
+		
 	}
 
-	public void onClickOk(View v) {
-		// resultField.setText("");
+	public void onClickOkAfterAcc() {
 		/**
 		 * Construct an Intent to launch NewRecord. Note that NewRecord is
 		 * referenced explicitly via its class object.
 		 */
-		// Intent intent = new Intent(this, MainActivity.class);
-		// intent.setClass(NewRecord.this, MainActivity.class);
-		// startActivity(intent);
 
-		
-		
-		
 		if (edtInput.getText().toString().isEmpty()) {
 			Toast.makeText(this, "empty parking time!", Toast.LENGTH_SHORT)
 					.show();
@@ -361,6 +328,46 @@ public class NewRecord extends FragmentActivity implements
 		finish();
 
 	}
+    public void onClickOk(View v) {
+
+		Location location = mLocationClient.getLastLocation();
+		int acc=(int)location.getAccuracy();
+		if(acc<10) return;
+        /*
+         * An AlertDialog builder is used to build up the details of the modal
+         * dialog such as title, a message and an icon. It is possible to add
+         * one or more buttons to the modal dialog.
+         */
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setTitle("Location Accuracy")
+                .setMessage("The location may not accurate. Wait or Use it?")
+                .setIcon(android.R.drawable.ic_dialog_alert);
+        AlertDialog dlg = builder.create();
+        dlg.setButton(DialogInterface.BUTTON_POSITIVE, "Use this location", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            	onClickOkAfterAcc();
+                
+            }
+        });
+
+        dlg.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    	
+                       
+                    }
+                });
+
+        /*
+         * Show the modal dialog. Once the user has clicked on a button, the
+         * dialog is automatically removed.
+         */
+        dlg.show();
+ 
+    }
 
 	public void onBackPressed() {
 
@@ -410,5 +417,8 @@ public class NewRecord extends FragmentActivity implements
 		}
 
 	}
+	
+	
+
 
 }

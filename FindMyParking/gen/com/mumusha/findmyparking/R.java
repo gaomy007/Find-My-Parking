@@ -164,6 +164,16 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
+        public static final int blue1=0x7f04000c;
+        public static final int blue2=0x7f04000d;
+        public static final int blue3=0x7f04000e;
+        public static final int blue4=0x7f04000f;
+        public static final int blue5=0x7f040010;
+        public static final int blue6=0x7f040011;
+        public static final int blue7=0x7f040012;
+        public static final int card_gray=0x7f040017;
+        public static final int card_pressed=0x7f040014;
+        public static final int card_pressed_header=0x7f040015;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
          */
@@ -176,8 +186,10 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000c;
-        public static final int common_signin_btn_text_light=0x7f04000d;
+        public static final int common_signin_btn_text_dark=0x7f040018;
+        public static final int common_signin_btn_text_light=0x7f040019;
+        public static final int header_button_default=0x7f040016;
+        public static final int purple_dark=0x7f040013;
         public static final int transparent=0x7f04000a;
         public static final int yellow1=0x7f04000b;
     }
@@ -190,77 +202,166 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f080000;
         public static final int activity_vertical_margin=0x7f080001;
+        public static final int card_action_touchdelegate=0x7f080017;
+        public static final int card_content=0x7f08000d;
+        public static final int card_header=0x7f08000f;
+        public static final int card_header_button_margin_left=0x7f080016;
+        public static final int card_header_button_padding_side=0x7f080014;
+        public static final int card_header_button_padding_top=0x7f080015;
+        public static final int card_header_button_text=0x7f080013;
+        public static final int card_header_padding_horizontal=0x7f080012;
+        public static final int card_header_padding_top=0x7f080011;
+        public static final int card_inner_padding_horizontal_large=0x7f080019;
+        public static final int card_inner_padding_left=0x7f080007;
+        public static final int card_inner_padding_right=0x7f080008;
+        public static final int card_inner_padding_vertical=0x7f080006;
+        public static final int card_inner_padding_vertical_large=0x7f080018;
+        public static final int card_outer_padding_bottom=0x7f080004;
+        public static final int card_outer_padding_firstlast=0x7f080002;
+        public static final int card_outer_padding_horizontal=0x7f080005;
+        public static final int card_outer_padding_top=0x7f080003;
+        public static final int card_shadow=0x7f08000e;
+        public static final int card_subheader=0x7f080010;
+        public static final int card_thumbnail=0x7f080009;
+        public static final int card_thumbnail_margin=0x7f08000a;
+        public static final int card_title=0x7f08000c;
+        public static final int card_title_margin_left=0x7f08000b;
     }
     public static final class drawable {
-        public static final int bunny=0x7f020000;
-        public static final int button_style=0x7f020001;
-        public static final int common_signin_btn_icon_dark=0x7f020002;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020004;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020005;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020006;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020007;
-        public static final int common_signin_btn_icon_focus_light=0x7f020008;
-        public static final int common_signin_btn_icon_light=0x7f020009;
-        public static final int common_signin_btn_icon_normal_dark=0x7f02000a;
-        public static final int common_signin_btn_icon_normal_light=0x7f02000b;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000c;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000d;
-        public static final int common_signin_btn_text_dark=0x7f02000e;
-        public static final int common_signin_btn_text_disabled_dark=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020010;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f020011;
-        public static final int common_signin_btn_text_disabled_light=0x7f020012;
-        public static final int common_signin_btn_text_focus_dark=0x7f020013;
-        public static final int common_signin_btn_text_focus_light=0x7f020014;
-        public static final int common_signin_btn_text_light=0x7f020015;
-        public static final int common_signin_btn_text_normal_dark=0x7f020016;
-        public static final int common_signin_btn_text_normal_light=0x7f020017;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020018;
-        public static final int common_signin_btn_text_pressed_light=0x7f020019;
-        public static final int gress=0x7f02001a;
-        public static final int ic_launcher=0x7f02001b;
-        public static final int ic_launcher1=0x7f02001c;
-        public static final int ic_plusone_medium_off_client=0x7f02001d;
-        public static final int ic_plusone_small_off_client=0x7f02001e;
-        public static final int ic_plusone_standard_off_client=0x7f02001f;
-        public static final int ic_plusone_tall_off_client=0x7f020020;
+        public static final int add1=0x7f020000;
+        public static final int bunny=0x7f020001;
+        public static final int button_style=0x7f020002;
+        public static final int camera1=0x7f020003;
+        public static final int camera2=0x7f020004;
+        public static final int camera3=0x7f020005;
+        public static final int card_header_selector=0x7f020006;
+        public static final int card_menu_button=0x7f020007;
+        public static final int card_selector=0x7f020008;
+        public static final int card_shadow=0x7f020009;
+        public static final int common_signin_btn_icon_dark=0x7f02000a;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f02000b;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f02000c;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f02000d;
+        public static final int common_signin_btn_icon_disabled_light=0x7f02000e;
+        public static final int common_signin_btn_icon_focus_dark=0x7f02000f;
+        public static final int common_signin_btn_icon_focus_light=0x7f020010;
+        public static final int common_signin_btn_icon_light=0x7f020011;
+        public static final int common_signin_btn_icon_normal_dark=0x7f020012;
+        public static final int common_signin_btn_icon_normal_light=0x7f020013;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f020014;
+        public static final int common_signin_btn_icon_pressed_light=0x7f020015;
+        public static final int common_signin_btn_text_dark=0x7f020016;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020017;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020018;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020019;
+        public static final int common_signin_btn_text_disabled_light=0x7f02001a;
+        public static final int common_signin_btn_text_focus_dark=0x7f02001b;
+        public static final int common_signin_btn_text_focus_light=0x7f02001c;
+        public static final int common_signin_btn_text_light=0x7f02001d;
+        public static final int common_signin_btn_text_normal_dark=0x7f02001e;
+        public static final int common_signin_btn_text_normal_light=0x7f02001f;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020020;
+        public static final int common_signin_btn_text_pressed_light=0x7f020021;
+        public static final int custombutton=0x7f020022;
+        public static final int fastadd1=0x7f020023;
+        public static final int fastadd2=0x7f020024;
+        public static final int fastadd22=0x7f020025;
+        public static final int find1=0x7f020026;
+        public static final int findmycar2=0x7f020027;
+        public static final int google=0x7f020028;
+        public static final int google2=0x7f020029;
+        public static final int gress=0x7f02002a;
+        public static final int harline=0x7f02002b;
+        public static final int history2=0x7f02002c;
+        public static final int horline=0x7f02002d;
+        public static final int ic=0x7f02002e;
+        public static final int ic_action_read=0x7f02002f;
+        public static final int ic_launcher=0x7f020030;
+        public static final int ic_launcher1=0x7f020031;
+        public static final int ic_plusone_medium_off_client=0x7f020032;
+        public static final int ic_plusone_small_off_client=0x7f020033;
+        public static final int ic_plusone_standard_off_client=0x7f020034;
+        public static final int ic_plusone_tall_off_client=0x7f020035;
+        public static final int list1=0x7f020036;
+        public static final int list_focused=0x7f020037;
+        public static final int map=0x7f020038;
+        public static final int newrecord2=0x7f020039;
+        public static final int photologo=0x7f02003a;
+        public static final int pressed_background=0x7f02003b;
+        public static final int pressed_background_header=0x7f02003c;
+        public static final int unpressed_background=0x7f02003d;
+        public static final int verticalline=0x7f02003e;
+        public static final int whiteliner=0x7f02003f;
     }
     public static final class id {
-        public static final int action_settings=0x7f050016;
-        public static final int button1=0x7f05000c;
-        public static final int button2=0x7f050007;
-        public static final int buttonOk=0x7f050014;
-        public static final int buttonReset=0x7f050015;
-        public static final int chronometer1=0x7f050009;
-        public static final int editText1=0x7f050013;
-        public static final int edt_settime=0x7f050011;
+        public static final int ImageView01=0x7f050015;
+        public static final int ImageView02=0x7f05001a;
+        public static final int ImageView03=0x7f05001b;
+        public static final int action_settings=0x7f050032;
+        public static final int archive=0x7f050018;
+        public static final int button1=0x7f050017;
+        public static final int button2=0x7f050019;
+        public static final int buttonOk=0x7f050027;
+        public static final int buttonReset=0x7f050026;
+        public static final int checkbox_save=0x7f05000e;
+        public static final int chronometer1=0x7f05000f;
+        public static final int container=0x7f050013;
+        public static final int delButton=0x7f05002c;
+        public static final int dirButton=0x7f05002d;
+        public static final int editText1=0x7f050025;
+        public static final int editTextDialogUserInput=0x7f050031;
+        public static final int edt_settime=0x7f050023;
+        public static final int fastgps=0x7f050016;
         public static final int hybrid=0x7f050004;
-        public static final int imageButton1=0x7f050012;
-        public static final int imageView1=0x7f05000a;
-        public static final int map=0x7f05000f;
-        public static final int map_layout=0x7f05000e;
+        public static final int imageButton1=0x7f050024;
+        public static final int imageView1=0x7f050011;
+        public static final int imageView2=0x7f050010;
+        public static final int imageView3=0x7f05001c;
+        public static final int imageView4=0x7f050014;
+        public static final int inner_frame=0x7f050007;
+        public static final int layout_root=0x7f05002f;
+        public static final int lbl_alert_result=0x7f05001e;
+        public static final int list=0x7f050005;
+        public static final int map=0x7f050020;
+        public static final int map2=0x7f05000b;
+        public static final int map_layout=0x7f05001f;
+        public static final int map_layout2=0x7f05000a;
+        public static final int navi=0x7f05000d;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
+        public static final int read_icon=0x7f050033;
         public static final int satellite=0x7f050002;
-        public static final int scroll=0x7f05000d;
-        public static final int scroll2=0x7f050005;
+        public static final int scroll=0x7f05001d;
+        public static final int scroll2=0x7f050006;
+        public static final int share_button=0x7f05002e;
+        public static final int share_button1=0x7f050029;
         public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f050008;
-        public static final int textView2=0x7f050006;
-        public static final int textViewUserInput=0x7f05000b;
-        public static final int transparent_image=0x7f050010;
+        public static final int textView1=0x7f050022;
+        public static final int textView2=0x7f050008;
+        public static final int textView4=0x7f05002a;
+        public static final int textViewUserInput=0x7f050012;
+        public static final int textView_prompt_save=0x7f050030;
+        public static final int titleFrame=0x7f050009;
+        public static final int transparent_image=0x7f050021;
+        public static final int transparent_image2=0x7f05000c;
+        public static final int txtAlertDate=0x7f05002b;
+        public static final int txtAlertText=0x7f050028;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
-        public static final int activity_find_record=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_new_record=0x7f030002;
+        public static final int activity_archive=0x7f030000;
+        public static final int activity_find_record=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_new_record=0x7f030003;
+        public static final int activity_share=0x7f030004;
+        public static final int archive_item=0x7f030005;
+        public static final int prompts=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
+        public static final int main_activity_action=0x7f0a0001;
     }
     public static final class string {
         public static final int action_settings=0x7f06001c;
@@ -288,6 +389,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int checkbox=0x7f06001f;
+        public static final int cloud_title=0x7f060021;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -364,6 +467,8 @@ containing a value of this type.
          */
         public static final int location_client_powered_by_google=0x7f06001a;
         public static final int maptext=0x7f06001e;
+        public static final int read_title=0x7f060020;
+        public static final int see_more=0x7f060022;
     }
     public static final class style {
         /** 
@@ -392,6 +497,20 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
+        public static final int card_content=0x7f09000a;
+        public static final int card_header_inner=0x7f09000c;
+        public static final int card_header_outer=0x7f09000b;
+        public static final int card_header_summary=0x7f09000e;
+        public static final int card_header_title=0x7f09000d;
+        public static final int card_inner=0x7f090006;
+        public static final int card_inner_compressed=0x7f09000f;
+        public static final int card_outer=0x7f090005;
+        public static final int card_popup_anchor=0x7f090003;
+        public static final int card_shadow=0x7f090004;
+        public static final int card_thumbnail=0x7f090007;
+        public static final int card_title=0x7f090009;
+        public static final int card_title_frame=0x7f090008;
+        public static final int header_button=0x7f090002;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

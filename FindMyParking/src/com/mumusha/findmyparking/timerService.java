@@ -4,9 +4,7 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
 
 /**
  * FibonacciService is an example of a started service. The service will
@@ -44,20 +42,15 @@ public class timerService extends IntentService {
          * Retrieve the parameter.
          */
         int n = intent.getExtras().getInt("n");
-        /*
-         * !!!!!!!!!!!!!!!!!!!shorter time.
-         */
-        int res = n*100*60;
-        /*
-         * Sleep for 5 seconds to mimic a long running operation.
-         */
+         
+        //shorter time for test.
+        int res = n*10*60;
+
         try {
             Thread.sleep(res);
         } catch (InterruptedException e) {
         }
-        /*
-         * Show the results of the computation via a status bar notification.
-         */
+
         showNotification(n, res);
     }
 
